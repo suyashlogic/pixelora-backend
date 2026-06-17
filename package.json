@@ -1,0 +1,26 @@
+{
+  "name": "pixelora",
+  "version": "1.0.0",
+  "description": "Modern image optimization platform for compressing JPEG PNG and WebP images",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node index.js"
+  },
+  "keywords": [
+    "image-compression",
+    "nodejs",
+    "sharp",
+    "express",
+    "webp",
+    "optimization"
+  ],
+  "author": "Suyash Jain",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "multer": "^2.2.0",
+    "sharp": "^0.35.1"
+  }
+}
