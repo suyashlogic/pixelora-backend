@@ -5,6 +5,12 @@ const cors = require('cors');
 const path = require('path');
 const fs = require('fs');
 
+const compressedDir = path.join(__dirname, "compressed");
+
+if (!fs.existsSync(compressedDir)) {
+  fs.mkdirSync(compressedDir, { recursive: true });
+}
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -40,7 +46,7 @@ app.post('/compress', upload.single('image'), async (req, res) => {
     const originalSize = req.file.size;
     const originalName = path.parse(req.file.originalname).name;
     const outputFilename = `${originalName}_compressed_${Date.now()}.${format}`;
-    const outputPath = path.join(__dirname, 'compressed', outputFilename);
+    const outputPath = path.join(compressedDir, outputFilename);
 
     let pipeline = sharp(req.file.buffer);
 
@@ -83,7 +89,7 @@ app.post('/compress', upload.single('image'), async (req, res) => {
 });
 
 function cleanOldFiles() {
-  const dir = path.join(__dirname, 'compressed');
+  const dir = compressedDir;
   const now = Date.now();
   if (!fs.existsSync(dir)) return;
   fs.readdirSync(dir).forEach(file => {
