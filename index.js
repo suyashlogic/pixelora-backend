@@ -18,7 +18,11 @@ app.use(cors({
   origin: "*"
 }));
 app.use(express.json());
-app.use('/compressed', express.static('compressed'));
+app.use('/compressed', express.static('compressed', {
+  setHeaders: (res) => {
+    res.setHeader('Content-Disposition', 'attachment');
+  }
+}));
 
 // Multer config — store in memory for direct Sharp processing
 const storage = multer.memoryStorage();
