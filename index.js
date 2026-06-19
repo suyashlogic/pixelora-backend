@@ -82,7 +82,7 @@ app.post('/compress', upload.single('image'), async (req, res) => {
       width: meta.width,
       height: meta.height,
       format: meta.format,
-      downloadUrl: `${req.protocol}://${req.get("host")}/compressed/${outputFilename}`,
+      downloadUrl: `https://${req.get("host")}/compressed/${outputFilename}`,
       filename: outputFilename
     });
 
